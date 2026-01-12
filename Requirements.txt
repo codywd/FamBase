@@ -1,0 +1,272 @@
+Draft name options
+
+Primary pick: HearthHub
+Alt picks: FamFlow, Homeboard, KinPanel, FamilyDock, NestBoard
+
+Tagline idea: One board. Everyone’s on the same page.
+
+⸻
+
+Product summary
+
+A shared, lightweight “family command center” app that combines calendar, chores, lists, and pickup logistics into one board. Built for speed, clarity, and low-friction coordination.
+
+⸻
+
+Requirements draft
+
+Goals
+	•	Reduce “who’s doing what and when” confusion.
+	•	Make planning + execution visible to the whole household.
+	•	Keep it dead simple to update in under 10 seconds.
+
+Non-goals (v1)
+	•	Full parenting social network.
+	•	Complex budgeting, banking integration, or medical records.
+	•	Full meal recipe ecosystem.
+
+Personas
+	•	Household Admin (parent/guardian): configures boards, roles, automation.
+	•	Household Member (partner/older kid): views, claims tasks, updates status.
+	•	Guest Helper (babysitter/grandparent): limited board access.
+
+⸻
+
+MVP scope (v1)
+
+1) Boards and households
+
+Functional
+	•	Create/join a household via invite link or code.
+	•	One household can have multiple boards (optional in v1, or v2).
+	•	Roles: Admin, Member, Guest.
+	•	Member profiles: name, avatar, color (optional).
+
+Acceptance
+	•	Admin can invite and revoke access.
+	•	Guest can view only what Admin allows (toggle per module).
+
+2) Calendar and events
+
+Functional
+	•	Shared household calendar with:
+	•	Events: title, time, location, notes, owner, participants
+	•	Reminders: push notifications
+	•	Quick-add event flow (single screen).
+	•	“Today” and “This Week” views.
+
+Nice-to-have
+	•	Calendar sync (Google/Apple) as premium or v2.
+
+3) Chores and responsibilities
+
+Functional
+	•	Create chores with:
+	•	frequency (one-time, daily, weekly, custom)
+	•	assignee (one or many)
+	•	due date/time
+	•	points (optional)
+	•	Status: not started, in progress, done.
+	•	Streaks or simple completion history.
+
+Nice-to-have
+	•	“Claim this chore” button for kids.
+	•	Auto-rotate chores.
+
+4) Lists (groceries, shopping, packing)
+
+Functional
+	•	Multiple lists with:
+	•	add/edit/check-off items
+	•	categories (grocery, school, errands)
+	•	optional quantity
+	•	“Smart sort” by category (manual categories in v1).
+
+5) Pickup and logistics
+
+Functional
+	•	“Pickup plan” module:
+	•	Who is picking up which kid, from where, at what time
+	•	One-tap “I’ve got it” claim
+	•	Status: planned, en route, done
+	•	Quick message or note attached (no full chat needed).
+
+6) Home dashboard
+
+Functional
+	•	A single “Board” home screen showing:
+	•	Today’s schedule (next 3–5 items)
+	•	Urgent chores due today
+	•	Active pickup items
+	•	Top lists (pinned)
+
+7) Notifications
+
+Functional
+	•	Reminder notifications for events.
+	•	“Task due soon” notifications (configurable).
+	•	Pickup claim notifications (“Cody claimed pickup”).
+
+8) Settings and safety
+
+Functional
+	•	Role-based access controls.
+	•	Basic privacy: no public discovery, invite-only.
+	•	Export: simple CSV export (v2 if needed).
+	•	Data retention policy (delete household data on request).
+
+⸻
+
+v1 Non-functional requirements
+	•	Speed: home dashboard loads in < 2 seconds on average.
+	•	Offline-first lite: allow viewing cached board and editing lists offline; sync when online.
+	•	Reliability: conflict-safe list updates (last-write wins + merge for checklists).
+	•	Security: encrypted in transit; secure auth; device-based push token handling.
+	•	Accessibility: large tap targets; basic screen reader labels; color not required to interpret.
+
+⸻
+
+Inclusion requirements (built in from day 1)
+
+Accessibility
+	•	WCAG-aligned basics:
+	•	Supports Dynamic Type / text scaling
+	•	High-contrast mode option
+	•	Color-blind safe palettes
+	•	Screen-reader friendly labels and logical focus order
+	•	Reduce motion support
+	•	“Kid mode” UI: larger buttons, simplified text, optional icons.
+
+Family diversity and guardianship
+	•	Household roles use neutral language (Admin/Member/Guest), not “mom/dad.”
+	•	“Caregiver” terminology in templates.
+	•	Multiple guardians per child profile.
+	•	Optional pronouns, optional names.
+
+Tech inclusion
+	•	Works on older phones (define minimum OS targets).
+	•	Low-bandwidth mode: fewer animations, smaller image downloads.
+	•	Minimal required permissions.
+	•	Guest access with limited account creation (magic link) to reduce friction.
+
+Neurodiversity and cognitive load
+	•	Simple views: Today/Week, not 10 tabs.
+	•	“3 highlight” dashboard setting: only show top 3 priorities.
+	•	Gentle reminders with adjustable intensity (no shamey language).
+	•	Consistent iconography and predictable navigation.
+
+⸻
+
+User stories (MVP)
+
+Household setup
+	1.	As an Admin, I want to create a household board in under 60 seconds so I can start organizing immediately.
+	2.	As an Admin, I want to invite my partner/kids via a code or link so everyone can join easily.
+	3.	As an Admin, I want to assign roles (Member vs Guest) so access is appropriate.
+	4.	As a Guest, I want limited access so I can help without seeing private items.
+
+Dashboard
+	5.	As a Member, I want a “Today” dashboard so I can see what matters right now.
+	6.	As a Member, I want to pin my most-used list so it’s always one tap away.
+
+Calendar
+	7.	As a Member, I want to add an event quickly so I don’t avoid using the app.
+	8.	As a Member, I want reminders for appointments so we stop missing stuff.
+	9.	As a Member, I want to add location and notes so pickup is smoother.
+
+Chores
+	10.	As an Admin, I want to create recurring chores so I don’t re-enter them every week.
+	11.	As a Kid/Member, I want to mark chores done so my progress is visible.
+	12.	As an Admin, I want to see completion history so I can track accountability fairly.
+
+Lists
+	13.	As a Member, I want a grocery list we can both edit in real time so we don’t buy duplicates.
+	14.	As a Member, I want to categorize list items so shopping is faster.
+	15.	As a Member, I want to see who added an item so I can ask clarifying questions.
+
+Pickup logistics
+	16.	As a Member, I want to assign/claim pickups so we don’t double-drive or forget.
+	17.	As a Member, I want status updates (planned/en route/done) so I know what’s happening.
+	18.	As a Member, I want pickup notifications so I don’t need to text “u got him?”
+
+Settings and safety
+	19.	As an Admin, I want to remove a member instantly so household access stays secure.
+	20.	As any user, I want my data to be private and invite-only so I feel safe using it.
+
+⸻
+
+Monetization models
+
+Model A: Freemium household subscription (recommended)
+
+Free
+	•	1 household
+	•	Up to 4 members
+	•	Core modules: dashboard, lists, chores, basic calendar
+	•	Basic reminders
+
+Plus ($4.99–$7.99/mo)
+	•	Unlimited members (or 10+)
+	•	Multiple boards/households
+	•	Calendar sync (Google/Apple)
+	•	Advanced automation (recurring templates, chore rotation)
+	•	Widgets (home screen), shared “Today” digest
+	•	Priority support
+
+Family Pro ($9.99–$14.99/mo)
+	•	Multiple households (co-parenting setups)
+	•	Child profiles + schedules per child
+	•	Location-aware pickup reminders (optional)
+	•	Export/backup, audit log, advanced permissions
+
+Pros: predictable revenue, supports ongoing development
+Cons: requires careful free tier value to avoid churn
+
+Model B: One-time purchase + paid packs
+	•	App is $14.99 one-time
+	•	Optional paid packs:
+	•	template packs (school routines, ADHD-friendly routines)
+	•	icon packs
+	•	seasonal planners
+
+Pros: simple, appealing to “no subscription” folks
+Cons: slower long-term revenue
+
+Model C: Sponsorship/affiliate-light (use cautiously)
+	•	Grocery delivery affiliate links or coupon partner
+	•	“Order pickup supplies” button
+
+Pros: subsidizes free tier
+Cons: can feel gross; trust risk, needs restraint
+
+Model D: Employer benefit / partnership (later)
+	•	“Family coordination” as part of wellness benefits
+
+Pros: big deals
+Cons: long sales cycle
+
+⸻
+
+Monetization guardrails (trust-preserving)
+	•	No selling personal family data.
+	•	No ads on the core board.
+	•	Partnerships only as explicit opt-in utilities.
+
+⸻
+
+MVP success metrics
+	•	Activation: household created + 2+ members joined within 24 hours
+	•	Weekly active households
+	•	Chore completion usage (at least 3 completions/week)
+	•	List usage (at least 10 edits/week)
+	•	Retention: week 4 household retention rate
+
+⸻
+
+Suggested v2 expansions (high ROI)
+	•	Calendar sync (Google/Apple)
+	•	Templates (School Week, Sports Season, New Baby, etc.)
+	•	Meal planning module
+	•	Automation: “If practice ends at 6, pickup reminder at 5:40”
+	•	Home screen widgets and shared daily digest
+	•	Co-parenting mode with separate visibility rules
