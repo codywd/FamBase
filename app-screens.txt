@@ -1,0 +1,250 @@
+
+
+## Main app screens (MVP)
+
+Below is a practical screen map for v1 that stays lean, fast, and “10-second update” friendly.
+
+### Navigation model
+
+**Bottom tabs (5) + one global Quick Add button**
+
+* Board
+* Calendar
+* Chores
+* Lists
+* More
+* Floating “+” for quick add (Event, Chore, List Item, Pickup)
+
+This keeps kids and adults from getting lost.
+
+---
+
+## 1) Welcome and onboarding
+
+### Screen: Welcome
+
+Purpose: Get in quickly.
+
+* Buttons: **Create Household**, **Join Household**
+* Small text: “Invite-only. No public directory.”
+
+### Screen: Create Household
+
+* Household name
+* Your name
+* Role: Admin (default)
+* Create button
+
+### Screen: Join Household
+
+* Invite code or link paste
+* Name + optional avatar
+* Join button
+
+### Screen: Permissions and notifications
+
+* Toggle: event reminders
+* Toggle: chore due reminders
+* Toggle: pickup updates
+
+---
+
+## 2) Board (home dashboard)
+
+### Screen: Board
+
+Purpose: One place to see what matters today.
+Sections (stacked cards, collapsible):
+
+1. **Today’s Timeline**
+
+   * Next 3–5 items
+   * “Add event” inline
+2. **Pickups**
+
+   * “Who’s got it” cards with status
+   * One-tap claim
+3. **Due Today**
+
+   * Chores due today
+   * One-tap complete
+4. **Pinned Lists**
+
+   * Grocery, School, Errands
+   * One-tap add item
+
+Controls:
+
+* Top header: Household switcher + bell icon (notifications)
+* Filter: “All” | “Mine”
+* Quick actions row: Add Event, Add Chore, Add Item, Add Pickup
+
+---
+
+## 3) Calendar
+
+### Screen: Calendar
+
+Purpose: Shared schedule that is fast to scan.
+
+* Toggle: Day | Week | Agenda
+* Event cards show: time, title, location, participants, owner
+* Tap event opens Event Details
+* Long press or “+” adds event
+
+### Screen: Event Details
+
+* Title
+* Start/end
+* Location
+* Participants (chips)
+* Notes
+* Reminder settings
+* Edit | Delete
+
+---
+
+## 4) Chores
+
+### Screen: Chores
+
+Purpose: Assign, complete, repeat.
+Views:
+
+* Tabs: **Today**, **Upcoming**, **All**
+* Filter: All | Mine | By person
+* Chore card shows: title, due, assignee(s), frequency, status
+* Actions: Complete, Snooze, Reassign (permissions-based)
+
+### Screen: Chore Details
+
+* Title + description
+* Frequency (one-time, daily, weekly, custom)
+* Due date/time
+* Assignees
+* Points (optional)
+* History (simple “completed on” list)
+* Edit | Delete
+
+Optional (v1.1): “Claim this” for unassigned chores.
+
+---
+
+## 5) Lists
+
+### Screen: Lists
+
+Purpose: Multiple shared lists, real-time edits.
+
+* List tiles: Grocery, School, Errands, Packing, etc.
+* Pinned section at top
+* Search across lists (optional v1.1)
+
+### Screen: List Detail
+
+* Items with checkbox
+* Add item input fixed at bottom
+* Item fields (v1):
+
+  * name (required)
+  * quantity (optional)
+  * category tag (optional)
+* Sort options:
+
+  * Manual
+  * By category
+  * Unchecked first
+* “Recent activity” line: “Added by Delilah” (optional)
+
+---
+
+## 6) Pickup and logistics
+
+You can make this either its own tab or live inside Board. I’d still give it a dedicated screen for clarity.
+
+### Screen: Pickups
+
+Purpose: Prevent double-driving and missed pickups.
+
+* Cards grouped by date
+* Pickup card shows:
+
+  * who: child/person
+  * where: location
+  * when: time
+  * assigned driver (or unassigned)
+  * status: planned | en route | done
+* One-tap actions:
+
+  * Claim
+  * Mark En Route
+  * Mark Done
+
+### Screen: Pickup Details
+
+* Person/child
+* Location
+* Time window
+* Assigned driver
+* Notes (gate code, “call when here”)
+* Notification settings
+
+---
+
+## 7) More (settings and admin)
+
+### Screen: More
+
+Sections:
+
+* Household Members
+* Roles and permissions
+* Modules toggles (enable/disable Pickups, Points, etc.)
+* Notification preferences
+* Support / Feedback
+* Account
+
+### Screen: Members and Roles
+
+* Member list with role badge
+* Invite member button
+* Remove member (Admin only)
+* Guest access toggles:
+
+  * Can view calendar
+  * Can view pickups
+  * Can edit lists
+  * Can complete chores
+
+---
+
+## Global: Quick Add
+
+### Screen: Quick Add (modal)
+
+Buttons:
+
+* Add Event
+* Add Chore
+* Add List Item
+* Add Pickup
+
+Each opens a **single-screen create flow** with minimal required fields and an “Advanced” expander.
+
+---
+
+## MVP screen count (tight version)
+
+If you want to keep it super lean, this is the minimum set:
+
+1. Welcome / Create / Join
+2. Board
+3. Calendar + Event Details
+4. Chores + Chore Details
+5. Lists + List Detail
+6. Pickups + Pickup Detail
+7. More + Members/Roles
+
+---
+
+If you tell me your preference on one thing, I’ll lock the screen map into a clean IA spec: do you want **Pickups as its own tab**, or **only on Board** with a “See all pickups” link? Both work, but it changes the bottom nav.
