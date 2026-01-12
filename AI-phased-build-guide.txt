@@ -1,0 +1,493 @@
+Below is a step-by-step, bite-sized build guide you can hand to an AI agent (or use yourself with an agent in ChatGPT) to create the iPhone-only MVP. Each phase is intentionally small, has clear outputs, and includes “agent prompts” you can paste verbatim.
+
+Assumptions (safe defaults for MVP):
+	•	SwiftUI
+	•	MVVM (lightweight)
+	•	SwiftData for local persistence first
+	•	CloudKit sync + sharing deferred until later phases (keeps the AI from melting)
+	•	Pickups live on Board (no separate tab)
+
+⸻
+
+Phase 0: Project setup and constraints
+
+Objective
+
+Lock scope, tech choices, and repo hygiene so the agent does not wander.
+
+Deliverables
+	•	One-page scope doc
+	•	Xcode project created
+	•	Basic folder structure
+	•	Coding standards for the agent
+
+Steps
+	1.	Create a new Xcode project:
+	•	iOS App, SwiftUI, Swift, iOS 17+ (or 16+ if you want broader support)
+	2.	Decide architecture and naming conventions:
+	•	Modules: Board, Calendar, Chores, Lists, More
+	3.	Set up repo:
+	•	Git init, .gitignore (Xcode), basic README
+	4.	Define “MVP is local-only” for Phase 1–4.
+
+Agent prompt (copy/paste)
+
+You are building an iPhone-only SwiftUI app called FamBoard (working name). Use SwiftUI + MVVM and SwiftData for local persistence. In this phase, produce:
+1) A one-page MVP scope doc with non-goals
+2) A proposed folder structure
+3) A short coding standards guide (naming, file layout, patterns)
+Keep it concise and do not add features beyond: Board, Calendar, Chores, Lists, More, and Pickups on Board.
+
+Exit criteria
+	•	You can open the project and run a blank app
+	•	You have a written scope boundary that the agent must follow
+
+⸻
+
+Phase 1: Information architecture and screen map
+
+Objective
+
+Define exactly what screens exist and what each screen must show.
+
+Deliverables
+	•	Screen list with responsibilities
+	•	Navigation map (tabs + quick add)
+	•	Per-screen required fields and interactions
+
+Steps
+	1.	Confirm bottom tabs:
+	•	Board, Calendar, Chores, Lists, More
+	•	Floating Quick Add
+	2.	Write the minimal “Board cards” structure:
+	•	Today’s Timeline, Pickups, Due Today, Pinned Lists
+	3.	Define the create/edit flows (modal sheets).
+
+Agent prompt
+
+Create a screen-by-screen specification for the FamBoard iPhone MVP in SwiftUI.
+Include:
+- Bottom tab navigation
+- Quick Add modal
+- For each screen: purpose, sections, required UI elements, and user actions
+Pickups must be a section on Board only.
+Do not propose backend or syncing yet.
+
+Exit criteria
+	•	You can hand the spec to a developer and they could build without guessing
+	•	No extra screens sneak in
+
+⸻
+
+Phase 2: Data model and persistence plan (SwiftData)
+
+Objective
+
+Define the SwiftData models and relationships cleanly before UI work.
+
+Deliverables
+	•	SwiftData model definitions (entities + fields)
+	•	Relationship diagram (text is fine)
+	•	Sample seed data strategy for previews
+
+Suggested entities (MVP local-only)
+	•	Household (optional for now, can be single household local)
+	•	Member
+	•	Event
+	•	Chore
+	•	ChoreCompletion (or completion dates list)
+	•	ListCollection
+	•	ListItem
+	•	Pickup (Board section)
+
+Steps
+	1.	Decide which entities are required in v1 local-only:
+	•	You can treat “Household” as a single local container
+	2.	Identify fields:
+	•	Events: title, start/end, location, notes, participants
+	•	Chores: title, due, recurrence, assignee, status
+	•	Lists: name, pinned, items
+	•	Pickups: who, where, when, assigned driver, status
+	3.	Define enums:
+	•	PickupStatus: planned, enRoute, done
+	•	ChoreStatus: notStarted, inProgress, done
+
+Agent prompt
+
+Design SwiftData models for the FamBoard MVP (local-only iPhone).
+Output:
+1) A list of models with fields and types
+2) Relationships between models
+3) Swift code for the SwiftData @Model types, including enums
+Keep it minimal and aligned to these features only: Board, Calendar events, Chores, Lists, Pickups on Board, Members (local).
+
+Exit criteria
+	•	Models compile
+	•	SwiftUI previews can load with seed data
+
+⸻
+
+Phase 3: App skeleton and navigation wiring
+
+Objective
+
+Build the runnable UI shell with tabs and placeholder screens.
+
+Deliverables
+	•	TabView with 5 tabs
+	•	Quick Add button and sheet
+	•	Placeholder views for each screen
+
+Steps
+	1.	Implement TabView + navigation titles
+	2.	Add global Quick Add:
+	•	A floating button (overlay) that opens a sheet
+	3.	Add a simple app-wide “Store”:
+	•	SwiftData container injected into environment
+	4.	Add seed data in Previews to validate UI layout
+
+Agent prompt
+
+Implement the FamBoard SwiftUI app skeleton:
+- TabView with Board, Calendar, Chores, Lists, More
+- A floating + button that opens a Quick Add sheet
+- Each tab shows a placeholder view with correct navigation title
+- Use SwiftData container setup in the App entry point
+Provide the Swift code for these files and explain where to place them in Xcode.
+No feature logic yet.
+
+Exit criteria
+	•	App runs and you can switch tabs
+	•	Quick Add sheet opens and closes
+
+⸻
+
+Phase 4: Board screen (read-only first)
+
+Objective
+
+Render the Board as a dashboard using SwiftData data, no editing yet.
+
+Deliverables
+	•	Board UI with four sections:
+	•	Today’s Timeline
+	•	Pickups
+	•	Due Today
+	•	Pinned Lists
+	•	Empty states for each section
+
+Steps
+	1.	Implement BoardView with sections as cards
+	2.	Build queries:
+	•	Today’s events: start date within today
+	•	Pickups: today + not done
+	•	Due today chores
+	•	Pinned lists: top 2–3
+	3.	Add empty states:
+	•	“No pickups today”
+	•	“Nothing due today”
+
+Agent prompt
+
+Build the BoardView in SwiftUI using SwiftData queries.
+Board sections:
+1) Today’s Timeline (events for today)
+2) Pickups (today, not done)
+3) Due Today (chores due today)
+4) Pinned Lists (top pinned lists)
+Add clean empty states for each section.
+Do not implement editing yet, only display.
+
+Exit criteria
+	•	Board populates from seed data
+	•	Board looks coherent with empty states
+
+⸻
+
+Phase 5: Quick Add v1 (create flows for all modules)
+
+Objective
+
+Make the app useful: create Event, Chore, List Item, Pickup from Quick Add.
+
+Deliverables
+	•	Quick Add modal with 4 actions
+	•	Simple single-screen create forms
+	•	Saves into SwiftData and reflects on Board
+
+Steps
+	1.	QuickAddSheet with buttons:
+	•	Add Event, Add Chore, Add List Item, Add Pickup
+	2.	Implement each Create form:
+	•	Minimal required fields only
+	3.	Save on “Add”
+	4.	Validate that Board updates immediately after save
+
+Agent prompt
+
+Implement Quick Add creation flows in SwiftUI + SwiftData:
+- QuickAddSheet with 4 actions
+- CreateEventView, CreateChoreView, CreateListItemView, CreatePickupView
+Each form must be minimal and single-screen.
+On save, insert into SwiftData and dismiss.
+Ensure the Board reflects new records immediately.
+
+Exit criteria
+	•	You can add one of each item type
+	•	Board updates without relaunch
+
+⸻
+
+Phase 6: Calendar screens (list/agenda + details)
+
+Objective
+
+Enable browsing events and editing them.
+
+Deliverables
+	•	Calendar screen with Day/Week/Agenda (start with Agenda if simpler)
+	•	Event details screen
+	•	Edit and Delete
+
+Steps
+	1.	Implement Agenda list grouped by date
+	2.	EventDetailsView
+	3.	EditEventView (reuse create view with prefilled data)
+	4.	Delete confirmation
+
+Agent prompt
+
+Build Calendar MVP:
+- Start with an Agenda view grouped by date
+- Tap an event to open EventDetailsView
+- Add Edit and Delete
+Reuse CreateEventView for editing if possible.
+Keep UI simple and iPhone friendly.
+
+Exit criteria
+	•	CRUD works for events
+	•	Board timeline reflects edits
+
+⸻
+
+Phase 7: Chores screens (today/upcoming/all + complete)
+
+Objective
+
+Full chores workflow with recurrence simplified.
+
+Deliverables
+	•	Chores screen with segmented control: Today, Upcoming, All
+	•	Chore details
+	•	Mark complete (and optional snooze)
+
+Steps
+	1.	Implement filters:
+	•	Today: due today and not done
+	•	Upcoming: due next 7 days
+	•	All: all chores
+	2.	Completion behavior:
+	•	If one-time: mark done
+	•	If recurring: create next due date (simple recurrence rules)
+
+Agent prompt
+
+Implement Chores MVP screens:
+- Segmented control for Today, Upcoming (7 days), All
+- ChoreDetailsView
+- Mark Complete button
+For recurring chores, on completion set next due date based on recurrence (daily/weekly/custom interval days).
+Keep logic straightforward and explain it clearly.
+
+Exit criteria
+	•	Completing a recurring chore advances it
+	•	Due Today section on Board updates
+
+⸻
+
+Phase 8: Lists screens (lists + list detail + pinning)
+
+Objective
+
+Shared list experience on one device with fast entry.
+
+Deliverables
+	•	Lists screen with pinned section
+	•	List detail with add item field fixed at bottom
+	•	Pin/unpin lists
+	•	Check/uncheck items
+
+Steps
+	1.	Lists index view (pinned first)
+	2.	List detail:
+	•	Add item input
+	•	Items with checkbox
+	3.	Simple sort toggles (optional):
+	•	Unchecked first
+
+Agent prompt
+
+Implement Lists MVP:
+- ListsView showing pinned lists first
+- CreateListView to create a new list
+- ListDetailView with item checkboxes and an add-item input at the bottom
+- Support pin/unpin list
+Use SwiftData for persistence and keep interactions fast.
+
+Exit criteria
+	•	Lists behave like a real grocery list
+	•	Pinned lists appear on Board
+
+⸻
+
+Phase 9: Pickups on Board (claim and status)
+
+Objective
+
+Make pickups actionable without adding a pickups tab.
+
+Deliverables
+	•	Pickup cards on Board with actions:
+	•	Claim
+	•	Mark En Route
+	•	Mark Done
+	•	Pickup detail/edit accessible from card tap
+
+Steps
+	1.	Add actions on pickup cards:
+	•	If unassigned: Claim sets driver to current member
+	2.	Add status transitions
+	3.	Add “See all pickups” link that opens a filtered list view (still not a tab)
+
+Agent prompt
+
+Enhance the Pickups section on Board:
+- Display pickup cards with status chip and assigned driver
+- Provide one-tap actions: Claim (if unassigned), Mark En Route, Mark Done
+- Tapping a pickup opens PickupDetailsView with edit and delete
+Do not create a new tab for pickups. If needed, use a navigation link to a pickups list screen.
+
+Exit criteria
+	•	You can run pickups entirely from Board
+	•	Status is visible and changes correctly
+
+⸻
+
+Phase 10: Members and “single household” settings
+
+Objective
+
+Support basic member identity locally (for “claiming” and assignees).
+
+Deliverables
+	•	Current user selection (simple local setting)
+	•	Members list in More tab
+	•	Add/remove local members
+
+Steps
+	1.	Create “CurrentMember” selection in app settings
+	2.	More tab:
+	•	Members list
+	•	Add member
+	3.	Use CurrentMember when claiming pickups and assigning chores
+
+Agent prompt
+
+Implement local Members and Current Member selection:
+- More tab shows Members list with add/remove
+- Add a way to choose Current Member (the device user)
+- Use Current Member for pickup claiming and default chore assignment
+This is local-only. No invites or sync.
+
+Exit criteria
+	•	Claims and assignments show the correct name
+	•	Current member persists across app launches
+
+⸻
+
+Phase 11: Notifications (minimal, safe)
+
+Objective
+
+Add reminders without complexity.
+
+Deliverables
+	•	Local notifications for:
+	•	Event reminders
+	•	Chore due reminders (optional)
+	•	Notification permission screen in settings
+
+Steps
+	1.	Request notification permission
+	2.	Schedule notifications when events are created/updated
+	3.	Cancel/reschedule on edit/delete
+
+Agent prompt
+
+Add local notifications for Events (and optionally Chores):
+- Request permissions from settings
+- Schedule a reminder notification for events based on user-selected reminder time
+- Ensure notifications reschedule on edit and cancel on delete
+Keep it minimal and reliable.
+
+Exit criteria
+	•	Notifications fire on device
+	•	Rescheduling works
+
+⸻
+
+Phase 12: Polish, QA, and TestFlight
+
+Objective
+
+Stabilize the MVP before introducing sync/sharing.
+
+Deliverables
+	•	Basic error handling
+	•	Empty states everywhere
+	•	App Store ready build via TestFlight
+
+Steps
+	1.	QA checklist:
+	•	Create/edit/delete each record type
+	•	Board reflects changes
+	•	App relaunch retains data
+	2.	Add basic analytics hooks (optional)
+	3.	Prepare TestFlight build
+
+Agent prompt
+
+Perform an MVP polish pass:
+- Add empty states and basic validation to all create/edit forms
+- Ensure navigation and state updates are consistent
+- Provide a QA checklist tailored to this app
+- Provide steps to prepare a TestFlight build
+No new features.
+
+Exit criteria
+	•	You can use it daily without obvious rough edges
+	•	TestFlight build installs cleanly
+
+⸻
+
+Later phases (when you are ready)
+
+These are intentionally separate so the agent does not mix them into MVP:
+	•	CloudKit sync
+	•	Invite-only households
+	•	Role-based permissions
+	•	Calendar sync with Apple/Google
+	•	Widgets
+	•	Co-parenting visibility rules
+
+⸻
+
+Practical “Agent Control Rules” (use every phase)
+
+Add this to the top of every prompt you send:
+	•	“Do not add features outside the phase.”
+	•	“Ask at most 2 questions; otherwise make reasonable assumptions.”
+	•	“Provide code in small files, with file names and placement.”
+	•	“Provide acceptance criteria and a quick manual test.”
+
+If you tell me your preferred iOS minimum target (iOS 16 or 17) and whether you want SwiftData or Core Data, I’ll tailor the model code, recurrence logic, and the exact SwiftUI patterns so the agent outputs fewer revisions.
