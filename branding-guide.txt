@@ -1,0 +1,281 @@
+
+## Brand overview
+
+### Working name
+
+**FamBoard**
+
+### Tagline options
+
+* **One board. Zero chaos.**
+* **Everyone knows the plan.**
+* **The family command center.**
+* **Less texting. More doing.**
+
+### Positioning statement
+
+FamBoard is a lightweight, invite-only family coordination board that turns schedules, chores, lists, and pickups into a single daily dashboard everyone can understand in seconds.
+
+### Brand promise
+
+If it matters today, it’s on the Board.
+
+### Differentiators
+
+* **Board-first**: one home screen that answers “what’s happening” instantly.
+* **Low friction**: every action is designed to take under 10 seconds.
+* **No shame**: supportive nudges, not guilt-driven productivity theater.
+* **Invite-only**: private by default, family-safe by design.
+
+---
+
+## Audience and personality
+
+### Primary audience
+
+Busy households with at least two coordinators (partners, co-parents, older kids, grandparents helping).
+
+### Brand traits
+
+* Clear
+* Calm
+* Capable
+* Friendly
+* Slightly witty (dad-joke adjacent, but restrained)
+
+### Voice and tone
+
+**Voice:** dependable, human, and concise
+**Tone:** calm urgency, never stressful
+
+**Do**
+
+* “Pickup is unassigned. Want to claim it?”
+* “Nice. That’s one less thing.”
+
+**Don’t**
+
+* “You failed your chores streak.”
+* “Uh oh, you forgot again.”
+
+---
+
+## Naming system inside the app
+
+### Feature names (simple, obvious)
+
+* **Board** (home dashboard)
+* **Calendar**
+* **Chores**
+* **Lists**
+* **More**
+* Board sections: **Today**, **Pickups**, **Due Today**, **Pinned Lists**
+
+### Microcopy style rules
+
+* Use short sentences.
+* Prefer verbs: “Claim”, “Mark done”, “Add item”.
+* Avoid parent-role assumptions (no “Mom mode”, “Dad duty”).
+* Avoid “nag” language.
+
+---
+
+## Visual identity
+
+### Logo concept directions (pick one)
+
+1. **Checklist + home mark**
+   A simplified home outline with a subtle checkmark inside.
+2. **Board grid icon**
+   A 2x2 grid of rounded tiles, one tile has a check.
+3. **Pin + calendar chip**
+   A pin shape that doubles as a rounded square “tile”.
+
+Logo should be:
+
+* Flat, minimal, 1-color friendly
+* Legible at 24px
+* No tiny interior lines
+
+### App icon guidance
+
+* Rounded square background
+* Single bold symbol centered
+* No text on the icon
+* Keep high contrast and simple silhouette
+
+---
+
+## Color system (calm, high-contrast, family-safe)
+
+### Palette
+
+| Token          | Use                      | Hex         |
+| -------------- | ------------------------ | ----------- |
+| Primary        | main actions, highlights | **#2D6CDF** |
+| Primary Dark   | pressed states           | **#1F4FB0** |
+| Accent         | success/confirmation     | **#1F9D6E** |
+| Warning        | due soon, attention      | **#F2A900** |
+| Danger         | destructive actions      | **#D64545** |
+| Background     | main surfaces            | **#F7F8FA** |
+| Surface        | cards                    | **#FFFFFF** |
+| Text Primary   | headings/body            | **#111827** |
+| Text Secondary | helper text              | **#4B5563** |
+| Divider        | borders                  | **#E5E7EB** |
+
+### Usage rules
+
+* Use **Primary** for the single most important action per screen.
+* Use **Warning** for “due soon” only, not as decoration.
+* Never rely on color alone: pair status with icon + label (Accessible).
+
+---
+
+## Typography
+
+### Recommended (mobile friendly)
+
+* **iOS:** SF Pro (system)
+* **Android:** Roboto (system)
+
+### Type scale (simple)
+
+* H1: 24–28 semibold (screen title)
+* H2: 18–20 semibold (section headers like “Pickups”)
+* Body: 15–17 regular
+* Caption: 12–13 regular (metadata like “Added by Cody”)
+
+### Rules
+
+* Prefer sentence case: “Due today”, not “DUE TODAY”.
+* Keep line length readable in cards.
+
+---
+
+## UI style
+
+### Shape language
+
+* Rounded rectangles for cards and chips
+* Consistent corner radius (example: 12 for cards, 16 for chips)
+
+### Elevation
+
+* Subtle shadows, or none if you go fully flat
+* Emphasize separation using spacing and dividers rather than heavy shadows
+
+### Components
+
+**Board Cards**
+
+* Each section is a card stack
+* Card header: title + optional “See all”
+* Card body: 3–5 items max, then “View more”
+
+**Status Chips**
+
+* Planned, En route, Done
+* Each with icon + text
+
+**Primary actions**
+
+* “+” global quick add
+* Inline “Add event”, “Add item” in Board sections for speed
+
+---
+
+## Iconography
+
+### Style
+
+* Rounded, consistent stroke weight
+* Simple shapes, no detailed illustrations
+
+### Key icons
+
+* Board: grid
+* Calendar: calendar
+* Chores: check-circle
+* Lists: list/checklist
+* Pickup: car or location-pin (keep it friendly, not “taxi app”)
+
+---
+
+## Imagery (optional)
+
+If you use illustrations:
+
+* Minimal, warm, inclusive silhouettes
+* No stock-photo “perfect family” vibes
+* Focus on objects and moments (backpack, calendar, groceries), not faces
+
+---
+
+## Accessibility and inclusion baked into brand
+
+* Neutral labels: caregiver, guardian, member, guest
+* Color palette supports high contrast
+* Support Dynamic Type and large tap targets
+* “Kid mode” option (bigger UI, simplified Board view)
+* Low-stimulation mode (reduced motion, fewer animations)
+
+---
+
+## Pickups on the Board: branding specifics
+
+Since Pickups is a Board section (not its own tab), it should feel like a “status strip” not a separate feature.
+
+### Pickup card copy examples
+
+* “Pickup: Delilah at Dance, 6:00 PM”
+* “Unassigned. Claim pickup?”
+* “Cody claimed pickup”
+* “Status: En route”
+
+### One-tap actions
+
+* Claim
+* Mark En route
+* Mark Done
+
+Keep it calm, factual, and easy to scan.
+
+---
+
+## App Store and marketing basics
+
+### App Store subtitle ideas
+
+* “Schedules, chores, lists, pickup plans”
+* “Your family’s daily dashboard”
+* “One shared board for home life”
+
+### 3 feature bullets (store listing)
+
+* Board-first daily dashboard
+* Shared lists and recurring chores
+* Pickup plans with one-tap claiming
+
+### Screenshot callouts (simple)
+
+1. “Everything important today”
+2. “Shared lists that actually stay updated”
+3. “Pickups without the text storm”
+4. “Chores with clear ownership”
+
+---
+
+## Do / Don’t cheat sheet
+
+### Do
+
+* Make the Board feel calm and uncluttered.
+* Use friendly, neutral language.
+* Design for one-handed use.
+* Keep “quick add” obvious.
+
+### Don’t
+
+* Add chat as a core feature (text storms are the enemy).
+* Shame users with streaks or red alerts everywhere.
+* Hide key actions in menus.
